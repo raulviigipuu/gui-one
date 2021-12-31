@@ -2,7 +2,6 @@ plugins {
     id 'groovy'
     id 'java'
     id 'application'
-    id 'com.github.ben-manes.versions' version '0.40.0'
 }
 
 group 'dev'
@@ -14,7 +13,7 @@ repositories {
 
 dependencies {
     implementation 'org.codehaus.groovy:groovy-all:3.0.9'
-    implementation 'com.formdev:flatlaf:1.6.5'
+    implementation 'com.formdev:flatlaf:2.0-rc1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }

@@ -8,6 +8,3 @@ Build: **gradle**
 
 ## run
     ./gradlew run
-
-## dependency updates
-    gradle dependencyUpdates
