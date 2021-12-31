@@ -1,7 +1,8 @@
 plugins {
     id 'groovy'
+    id 'java'
     id 'application'
-    id "com.github.johnrengelman.shadow" version "7.0.0"
+    id 'com.github.ben-manes.versions' version '0.40.0'
 }
 
 group 'dev'
@@ -12,16 +13,28 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.codehaus.groovy:groovy-all:3.0.8'
-    implementation 'com.formdev:flatlaf:1.6'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.9'
+    implementation 'com.formdev:flatlaf:1.6.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+def mainClassName = 'dev.App'
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    manifest {
+        attributes "Main-Class": mainClassName
+    }
+}
+
+application {
+    mainClass = mainClassName
 }
 
 test {
     useJUnitPlatform()
-}
-
-application {
-    mainClass.set('dev.App')
 }
