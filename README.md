@@ -10,4 +10,4 @@ Build: **gradle**
     ./gradlew run
 
 ## dependency updates
-    gradle dependencyUpdates -Drevision=release
+    gradle dependencyUpdates

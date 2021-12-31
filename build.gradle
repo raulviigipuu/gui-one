@@ -38,3 +38,10 @@ application {
 test {
     useJUnitPlatform()
 }
+
+tasks.named("dependencyUpdates").configure {
+    rejectVersionIf {
+        isNonStable(it.candidate.version)
+    }
+}
+
