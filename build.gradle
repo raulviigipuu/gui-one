@@ -2,6 +2,7 @@ plugins {
     id 'groovy'
     id 'java'
     id 'application'
+    id 'com.github.ben-manes.versions' version '0.51.0'
 }
 
 group 'dev'
@@ -12,10 +13,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.codehaus.groovy:groovy-all:3.0.9'
-    implementation 'com.formdev:flatlaf:2.0-rc1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation 'org.apache.groovy:groovy:4.0.18'
+    implementation 'com.formdev:flatlaf:3.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 }
 
 def mainClassName = 'dev.App'
@@ -36,4 +37,16 @@ application {
 
 test {
     useJUnitPlatform()
+}
+
+def isNonStable = { String version ->
+    def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { it -> version.toUpperCase().contains(it) }
+    def regex = /^[0-9,.v-]+(-r)?$/
+    return !stableKeyword && !(version ==~ regex)
+}
+
+tasks.named('dependencyUpdates').configure {
+    rejectVersionIf {
+        isNonStable(it.candidate.version)
+    }
 }

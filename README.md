@@ -8,3 +8,7 @@ Build: **gradle**
 
 ## run
     ./gradlew run
+
+## gradle dep updates
+
+    ./gradlew dependencyUpdates -Drevision=release
