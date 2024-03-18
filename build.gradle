@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.groovy:groovy:4.0.19'
+    implementation 'org.apache.groovy:groovy:4.0.20'
     implementation 'com.formdev:flatlaf:3.4'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
